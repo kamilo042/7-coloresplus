@@ -73,7 +73,6 @@ input[type="email"]{
 
 
 .checkbox{
-    -webkit-appearance: none;
     position: relative;
     width: 15px;
     height: 15px;

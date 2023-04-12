@@ -16,7 +16,7 @@ submitBtn.addEventListener('click', () => {
         showAlert('name must be 3 letter long');
     } else if(!email.value.length){
         showAlert('enter your email');
-    } else if(!password.value.length < 8){
+    } else if(!password.value.length > 8){
         showAlert('your password should be at least 8 letters long')
     } else if(!number.value.length){
         showAlert('enter your phone number');
@@ -27,6 +27,15 @@ submitBtn.addEventListener('click', () => {
     } else {
         //submit form
         loader.style.display = 'block';
+        sendData('/signup', {
+            name: name.value,
+            email: email.value,
+            password: password.value,
+            number: number.value,
+            tac: tac.checked,
+            notification: notification.checked,
+            seller: false
+        })
     }
 })
 
@@ -43,6 +52,14 @@ const sendData = (path, data) => {
     })
 }
 
+const processData = (data) => {
+    loader.style.display = null;
+    if(data.alert) {
+        showAlert(data.alert);
+    }else if(data.name) {
+        console.log(data);
+    }
+}
 
 //alert function
 
