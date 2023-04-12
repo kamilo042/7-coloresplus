@@ -57,7 +57,8 @@ const processData = (data) => {
     if(data.alert) {
         showAlert(data.alert);
     }else if(data.name) {
-        console.log(data);
+        // create authToken
+        data.authToken = generateToken(data.email);
     }
 }
 
