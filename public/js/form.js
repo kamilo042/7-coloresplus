@@ -1,15 +1,27 @@
+//redirect to homepage when user log
+
+window.onload = () => {
+    if(sessionStorage.user) {
+        user = JSON.parse(sessionStorage.user);
+        if(compareToken(user.authToken, user.email)){
+            location.replace('/')
+        }
+    }
+}
+
+
 const loader = document.querySelector('.loader')
 
 
 //select inputs
 
 const submitBtn = document.querySelector('.submit-btn');
-const name = document.querySelector('#name');
+const name = document.querySelector('#name') || null;
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
-const number = document.querySelector('#number');
-const tac = document.querySelector('#terms-and-cond');
-const notification = document.querySelector('#notification');
+const number = document.querySelector('#number') || null;
+const tac = document.querySelector('#terms-and-cond') || null;
+const notification = document.querySelector('#notification') || null;
 
 submitBtn.addEventListener('click', () => {
     if(name.value.length < 3){
@@ -59,6 +71,8 @@ const processData = (data) => {
     }else if(data.name) {
         // create authToken
         data.authToken = generateToken(data.email);
+        sessionStorage.user = JSON.stringify(data);
+        location.replace('/');
     }
 }
 

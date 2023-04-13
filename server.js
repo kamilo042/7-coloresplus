@@ -86,6 +86,13 @@ app.post('/signup', (req, res) => {
    
 })
 
+// login route
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(staticPath, "login.html"))
+})
+
+
 //404 route
 app.get('/404', (req, res) => {
     res.sendFile(path.join(staticPath, "404.html"))
